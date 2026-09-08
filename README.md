@@ -1,12 +1,5 @@
-# Django Ninja 
+# Nano Django
 
+Right from the start, and by design, a Django project has many files which define web app you're building. In many respects this is good but for beginners it can be a little intimidating knowing how to navigate the files. 
 
-Django Ninja is a web framework for building APIs with Django and Python 3.6+ type hints.
-
-Key features:
-
-    Easy: Designed to be easy to use and intuitive.
-    FAST execution: Very high performance thanks to Pydantic and async support.
-    Fast to code: Type hints and automatic docs lets you focus only on business logic.
-    Standards-based: Based on the open standards for APIs: OpenAPI (previously known as Swagger) and JSON Schema.
-    Django friendly: (obviously) has good integration with the Django core and ORM.
+Nano Django takes a different approach, you can define a Django project in a single file, using views, models and admin. If you subsquently decide you would prefer to use the conventional Django structure nano-django provides a tool to automatically convert your nano-django project to a full Django project.
