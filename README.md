@@ -10,6 +10,9 @@ Right from you start a [Django project](https://docs.djangoproject.com/en/6.1/) 
  - [Docs](https://docs.nanodjango.dev/en/latest/)
  - [Repos](https://github.com/radiac/nanodjango)
 
+## Environmental Variables
+Environmental Variables are configured using [direnv](https://direnv.net/). The real config file is not committed but `.envrc.sample` shows the structure of the necessary file.
+
 ## Initialization 
 
 The default means of starting a nano django app, defined in app.py, is ...
