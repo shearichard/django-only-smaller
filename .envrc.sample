@@ -1,0 +1,2 @@
+# Example of https://direnv.net config. Able to be committed because secret stuff is hidden
+export DJANGO_SUPERUSER_PASSWORD='abc123'
