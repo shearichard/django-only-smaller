@@ -5,6 +5,7 @@ name = "pypi"
 
 [packages]
 nanodjango = "*"
+django-style = "*"
 
 [dev-packages]
 
