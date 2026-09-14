@@ -1,0 +1,20 @@
+<!doctype html>
+<html>
+<head>
+    <title>Add Country</title>
+</head>
+<body>
+    <h1>Add Country</h1>
+    <h2>v2</h2>
+
+    <form method="post">
+	{% csrf_token %}
+	{{form.as_p}}
+	<button type="submit">Save country</button>
+    </form>
+
+    <p>
+	<a href="/countries/">Back to country list</a>
+    </p>
+</body>
+</html>

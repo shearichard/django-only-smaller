@@ -88,28 +88,12 @@ def country_new(request):
     else:
         form = CountryForm()
 
-    return HttpResponse(
-        f"""
-        <!doctype html>
-        <html>
-        <head>
-            <title>Add Country</title>
-        </head>
-        <body>
-            <h1>Add Country</h1>
-
-            <form method="post">
-                {form.as_p()}
-                <button type="submit">Save country</button>
-            </form>
-
-            <p>
-                <a href="/countries/">Back to country list</a>
-            </p>
-        </body>
-        </html>
-        """
+    return app.render(
+        request,
+        "country_new.html",
+        {"form": form},
     )
+
 def count(request):
     return f"<p>Geography Home Page</p>"
 
@@ -118,7 +102,6 @@ def add_country(request):
     # Django Ninja API support built in
     Country.objects.create()
     return {"count": Country.objects.count()}
-
 
 
 
