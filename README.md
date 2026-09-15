@@ -6,9 +6,14 @@ Right from you start a [Django project](https://docs.djangoproject.com/en/6.1/) 
 
 ## Resources
 
- - [Project Home](https://nanodjango.dev)
- - [Docs](https://docs.nanodjango.dev/en/latest/)
- - [Repos](https://github.com/radiac/nanodjango)
+ - [nano django - Project Home](https://nanodjango.dev)
+ - [nano django - Docs](https://docs.nanodjango.dev/en/latest/)
+ - [nano django - Repo](https://github.com/radiac/nanodjango)
+ - [django-style documentation](https://django-style.readthedocs.io/en/latest/)
+ - [Bootstrap 5 - Forms](https://getbootstrap.com/docs/5.0/forms/overview)
+
+
+
 
 ## Environmental Variables
 Environmental Variables are configured using [direnv](https://direnv.net/). The real config file is not committed but `.envrc.sample` shows the structure of the necessary file.
