@@ -4,8 +4,10 @@ from django.http import HttpResponse
 from django.shortcuts import redirect
 from nanodjango import Django
 
-app = Django()
-
+app = Django(
+    STYLE_THEME = "bootstrap",
+    STYLE_IS_APP = True
+    )
 
 @app.admin
 class Country(models.Model):

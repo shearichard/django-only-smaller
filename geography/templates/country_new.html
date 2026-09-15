@@ -1,11 +1,11 @@
-<!doctype html>
-<html>
-<head>
-    <title>Add Country</title>
-</head>
-<body>
+{% extends "base.html" %}
+
+{% block title %}Country - Add{% endblock %}
+
+{% block content %}
+
     <h1>Add Country</h1>
-    <h2>v2</h2>
+    <h2>v3</h2>
 
     <form method="post">
 	{% csrf_token %}
@@ -16,5 +16,6 @@
     <p>
 	<a href="/countries/">Back to country list</a>
     </p>
-</body>
-</html>
+
+
+{% endblock %}
