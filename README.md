@@ -11,7 +11,7 @@ Right from you start a [Django project](https://docs.djangoproject.com/en/6.1/) 
  - [nano django - Repo](https://github.com/radiac/nanodjango)
  - [django-style documentation](https://django-style.readthedocs.io/en/latest/)
  - [Bootstrap 5 - Forms](https://getbootstrap.com/docs/5.0/forms/overview)
-
+ - [Bootstrap Bootswatch](https://www.jsdelivr.com/package/npm/bootswatch)
 
 
 
