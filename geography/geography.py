@@ -28,6 +28,22 @@ class CountryForm(forms.ModelForm):
         model = Country
         fields = ["name", "population", "area_sq_km"]
 
+        widgets = {
+            "name": forms.TextInput(attrs={
+                "class": "form-control",
+            }),
+            "population": forms.NumberInput(attrs={
+                "class": "form-control",
+            }),
+            "area_sq_km": forms.NumberInput(attrs={
+                "class": "form-control",
+                "step": "1",
+                "min": "0",
+            }),
+        }
+
+
+
 
 @app.route("/countries/")
 def country_list(request):
