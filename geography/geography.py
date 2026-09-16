@@ -6,8 +6,9 @@ from nanodjango import Django
 
 app = Django(
     STYLE_THEME = "bootstrap",
-    STYLE_IS_APP = True
-    )
+    STYLE_IS_APP = True,
+    EXTRA_APPS = ["django.contrib.humanize"])
+
 
 @app.admin
 class Country(models.Model):
@@ -42,58 +43,17 @@ class CountryForm(forms.ModelForm):
             }),
         }
 
-
-
-
 @app.route("/countries/")
 def country_list(request):
     countries = Country.objects.all().order_by("name")
 
-    rows = "".join(
-        f"""
-        <tr>
-            <td>{country.name}</td>
-            <td>{country.population:,}</td>
-            <td>{country.area_sq_km:,}</td>
-        </tr>
-        """
-        for country in countries
+    return app.render(
+        request,
+        "country_list.html",
+        {
+            "countries": countries,
+        },
     )
-
-    if not rows:
-        rows = '<tr><td colspan="3">No countries have been added yet.</td></tr>'
-
-    return HttpResponse(
-        f"""
-        <!doctype html>
-        <html>
-        <head>
-            <title>Countries</title>
-        </head>
-        <body>
-            <h1>Countries</h1>
-
-            <p>
-                <a href="/countries/new/">Add a country</a>
-            </p>
-
-            <table border="1" cellpadding="6">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Population</th>
-                        <th>Area (km²)</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {rows}
-                </tbody>
-            </table>
-        </body>
-        </html>
-        """
-    )
-
 
 @app.route("/countries/new/")
 def country_new(request):
