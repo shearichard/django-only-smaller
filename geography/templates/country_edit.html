@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <h2>Edit country</h2>
+
+    <form method="post">
+        {% csrf_token %}
+
+        {{ form.as_p }}
+
+        <button type="submit">Save changes</button>
+
+        <a href="/countries/">Cancel</a>
+    </form>
+
+    <p>
+        <a href="/countries/">Back to country list</a>
+    </p>
+
+
+{% endblock %}
+

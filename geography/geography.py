@@ -1,7 +1,8 @@
 from django import forms
 from django.db import models
 from django.http import HttpResponse
-from django.shortcuts import redirect
+from django.shortcuts import get_object_or_404, redirect
+#
 from nanodjango import Django
 
 app = Django(
@@ -71,6 +72,47 @@ def country_new(request):
         "country_new.html",
         {"form": form},
     )
+
+
+@app.route("/countries/<int:country_id>/edit/")
+def country_edit(request, country_id):
+    country = get_object_or_404(Country, pk=country_id)
+
+    if request.method == "POST":
+        form = CountryForm(request.POST, instance=country)
+
+        if form.is_valid():
+            form.save()
+            return redirect("/countries/")
+    else:
+        form = CountryForm(instance=country)
+
+    return app.render(
+        request,
+        "country_edit.html",
+        {
+            "form": form,
+            "country": country,
+        },
+    )
+
+
+@app.route("/countries/<int:country_id>/delete/")
+def country_delete(request, country_id):
+    country = get_object_or_404(Country, pk=country_id)
+
+    if request.method == "POST":
+        country.delete()
+        return redirect("/countries/")
+
+    return app.render(
+        request,
+        "country_delete.html",
+        {
+            "country": country,
+        },
+    )
+
 
 def count(request):
     return f"<p>Geography Home Page</p>"

@@ -19,6 +19,7 @@
                         <th scope="col">Name</th>
                         <th scope="col">Population</th>
                         <th scope="col">Area (km²)</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
 
@@ -28,6 +29,15 @@
                             <td>{{ country.name }}</td>
                             <td>{{ country.population|intcomma }}</td>
                             <td>{{ country.area_sq_km|intcomma }}</td>
+                            <td>
+                                <a href="/countries/{{ country.pk }}/edit/">
+                                    Edit
+                                </a>
+
+                                <a href="/countries/{{ country.pk }}/delete/">
+                                    Delete
+                                </a>
+                            </td>
                         </tr>
                     {% empty %}
                         <tr>
