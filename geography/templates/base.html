@@ -86,7 +86,9 @@
       {# Messages END #}
 
       {# Container START #}
-      <main class="container{% if STYLE_IS_APP %}-fluid{% else %} my-4{% endif %}">
+
+
+      <main class="container{% if STYLE_IS_APP %}-fluid{% endif %} px-4{% if not STYLE_IS_APP %} my-4{% endif %}">
         {% block main %}
           {% block title %}
             <h1>{{ title }}</h1>
