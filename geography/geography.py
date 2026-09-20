@@ -191,7 +191,9 @@ def country_new(request):
     return app.render(
         request,
         "country_new.html",
-        {"form": form},
+        merge_common_context(
+            {"form": form},
+        )
     )
 
 
@@ -211,10 +213,12 @@ def country_edit(request, country_id):
     return app.render(
         request,
         "country_edit.html",
-        {
-            "form": form,
-            "country": country,
-        },
+        merge_common_context(
+            {
+                "form": form,
+                "country": country,
+            },
+        )
     )
 
 
@@ -229,9 +233,11 @@ def country_delete(request, country_id):
     return app.render(
         request,
         "country_delete.html",
-        {
-            "country": country,
-        },
+        merge_common_context(
+            {
+                "country": country,
+            },
+        )
     )
 
 
@@ -244,9 +250,11 @@ def city_list(request):
     return app.render(
         request,
         "city_list.html",
-        {
-            "cities": cities,
-        },
+        merge_common_context(
+            {
+                "cities": cities,
+            },
+        )
     )
 
 
@@ -264,7 +272,9 @@ def city_new(request):
     return app.render(
         request,
         "city_new.html",
-        {"form": form},
+        merge_common_context(
+            {"form": form},
+        )
     )
 
 
@@ -284,10 +294,12 @@ def city_edit(request, city_id):
     return app.render(
         request,
         "city_edit.html",
-        {
-            "form": form,
-            "city": city,
-        },
+        merge_common_context(
+            {
+                "form": form,
+                "city": city,
+            },
+        )
     )
 
 
@@ -304,9 +316,11 @@ def city_delete(request, city_id):
     return app.render(
         request,
         "city_delete.html",
-        {
-            "city": city,
-        },
+        merge_common_context(
+            {
+                "city": city,
+            },
+        )
     )
 
 

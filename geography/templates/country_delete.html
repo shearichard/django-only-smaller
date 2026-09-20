@@ -2,25 +2,37 @@
 
 {% block content %}
 
-	<h1>Delete country</h1>
 
-	<p>
-	    Are you sure you want to delete
-	    <strong>{{ country.name }}</strong>?
-	</p>
+	<div class="container d-flex justify-content-center">
+	    <div class="card shadow-sm text-center mt-5" style="max-width: 32rem; width: 100%;">
+		<div class="card-body p-4">
+		    <h1 class="card-title mb-4">Delete country</h1>
 
-	<form method="post">
-	    {% csrf_token %}
+		    <p class="card-text">
+			Are you sure you want to delete
+			<strong>{{ country.name }}</strong>?
+		    </p>
 
-	    <button type="submit">Yes, delete</button>
-	    <a href="/countries/">Cancel</a>
-	</form>
+		    <form method="post" class="d-flex justify-content-center gap-2 mt-4">
+			{% csrf_token %}
 
-    <p>
-        <a href="/countries/">Back to country list</a>
-    </p>
+			<button type="submit" class="btn btn-danger">
+			    Yes, delete
+			</button>
 
+			<a href="/countries/" class="btn btn-secondary">
+			    Cancel
+			</a>
+		    </form>
+
+		    <p class="mt-4 mb-0">
+			<a href="/countries/" class="btn btn-link">
+			    Back to country list
+			</a>
+		    </p>
+		</div>
+	    </div>
+	</div>
 
 {% endblock %}
-
 
