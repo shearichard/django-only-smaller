@@ -1,3 +1,4 @@
+from datetime import date
 from django import forms
 from django.db import models
 from django.db.models import F
@@ -15,6 +16,29 @@ app = Django(
     EXTRA_APPS = ["django.contrib.humanize"])
 
 
+def merge_common_context(options=None):
+    '''
+    Add context that is common to all templates to the
+    context dictionary passed as the 'options' dictionary
+    '''
+
+    default_context = {
+        "site_nav": [
+            {"url": "/", "label": "Home"},
+            {"url": "/countries/", "label": "Countries"},
+            {"url": "/cities/", "label": "Cities"},
+        ],
+    }
+
+    if options is None or options == {}:
+        return default_context
+
+    if not isinstance(options, dict):
+        raise TypeError("options must be a dictionary or None")
+
+    return {**default_context, **options}
+
+
 @app.admin
 class Country(models.Model):
     """
@@ -29,18 +53,18 @@ class Country(models.Model):
     name = models.CharField(max_length=255)
 
     def __str__(self):
-        return self.name
-
-    def __str__(self):
-        return self.country_iso_code
+        return f"{self.name} ({self.country_iso_code})"
 
 
 class CountryForm(forms.ModelForm):
     class Meta:
         model = Country
-        fields = ["name", "population", "area_sq_km"]
+        fields = ["country_iso_code", "name", "population", "area_sq_km"]
 
         widgets = {
+            "country_iso_code": forms.Select(attrs={
+                "class": "form-select",
+            }),
             "name": forms.TextInput(attrs={
                 "class": "form-control",
             }),
@@ -147,9 +171,10 @@ def country_list(request):
     return app.render(
         request,
         "country_list.html",
-        {
-            "countries": countries,
-        },
+        merge_common_context(
+            {
+                "countries": countries,
+            }),
     )
 
 @app.route("/countries/new/")
@@ -224,12 +249,70 @@ def city_list(request):
         },
     )
 
+
+@app.route("/cities/new/")
+def city_new(request):
+    if request.method == "POST":
+        form = CityForm(request.POST)
+
+        if form.is_valid():
+            form.save()
+            return redirect("/cities/")
+    else:
+        form = CityForm()
+
+    return app.render(
+        request,
+        "city_new.html",
+        {"form": form},
+    )
+
+
+@app.route("/cities/<int:city_id>/edit/")
+def city_edit(request, city_id):
+    city = get_object_or_404(City, pk=city_id)
+
+    if request.method == "POST":
+        form = CityForm(request.POST, instance=city)
+
+        if form.is_valid():
+            form.save()
+            return redirect("/cities/")
+    else:
+        form = CityForm(instance=city)
+
+    return app.render(
+        request,
+        "city_edit.html",
+        {
+            "form": form,
+            "city": city,
+        },
+    )
+
+
+
+@app.route("/cities/<int:city_id>/delete/")
+def city_delete(request, city_id):
+
+    city = get_object_or_404(City, pk=city_id)
+
+    if request.method == "POST":
+        city.delete()
+        return redirect("/cities/")
+
+    return app.render(
+        request,
+        "city_delete.html",
+        {
+            "city": city,
+        },
+    )
+
+
+
 def count(request):
     return f"<p>Geography Home Page</p>"
-
-
-
-
 
 
 @app.api.get("/country/add")

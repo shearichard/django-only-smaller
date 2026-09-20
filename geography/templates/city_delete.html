@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+	<div class="container d-flex justify-content-center">
+	    <div class="card shadow-sm text-center mt-5" style="max-width: 32rem; width: 100%;">
+		<div class="card-body p-4">
+		    <h1 class="card-title mb-4">Delete city</h1>
+
+		    <p class="card-text">
+			Are you sure you want to delete
+			<strong>{{ city.name }}</strong>?
+		    </p>
+
+		    <form method="post" class="d-flex justify-content-center gap-2 mt-4">
+			{% csrf_token %}
+
+			<button type="submit" class="btn btn-danger">
+			    Yes, delete
+			</button>
+
+			<a href="/countries/" class="btn btn-secondary">
+			    Cancel
+			</a>
+		    </form>
+
+		    <p class="mt-4 mb-0">
+			<a href="/cities/" class="btn btn-link">
+			    Back to city list
+			</a>
+		    </p>
+		</div>
+	    </div>
+	</div>
+
+{% endblock %}
+

@@ -27,7 +27,7 @@
           {% for city in cities %}
             <tr>
               <td class="text-break">{{ city.city_name }}</td>
-              <td class="text-break">{{ city.country.country_name }}</td>
+              <td class="text-break">{{ city.country.name }}</td>
                 <td>{{ city.population }}</td>
                 <td>
                     <a href="/cities/{{ city.pk }}/edit/">

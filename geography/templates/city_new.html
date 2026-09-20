@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <h2>Add City</h2>
+
+    <form method="post">
+	{% csrf_token %}
+
+	{{form.as_p}}
+
+	<button type="submit">Add City</button>
+    </form>
+
+    <p>
+	<a href="/cities/">Back to city list</a>
+    </p>
+
+
+{% endblock %}
